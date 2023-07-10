@@ -46,12 +46,14 @@ def update_item_title_from_menus(menus: list[ConsoleMenu], old_title: str, new_t
                         if isinstance(menu.items[i], FunctionItem):
                             if menu.items[i].args:
                                 for argi, arg in enumerate(menu.items[i].args):
-                                    if arg.upper() == old_title.upper():
-                                        menu.items[i].args[argi] = new_title
+                                    if isinstance(arg, str):
+                                        if arg.upper() == old_title.upper():
+                                            menu.items[i].args[argi] = new_title
                             if menu.items[i].kwargs:
                                 for key, value in menu.items[i].kwargs.items():
-                                    if value.upper() == old_title.upper():
-                                        menu.items[i].kwargs[key] = new_title                                
+                                    if isinstance(value, str):
+                                        if value.upper() == old_title.upper():
+                                            menu.items[i].kwargs[key] = new_title                                
     except Exception as e:
         if ignore_exception:
             raise Exception(str(e))
