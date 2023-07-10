@@ -1,4 +1,4 @@
-from utilities import wait_for_key_press as wait, add_item_to_menus, remove_item_from_menus, get_UUID as UUID
+from utilities import wait_for_key_press as wait, add_item_to_menus, remove_item_from_menus, update_item_title_from_menus, get_UUID as UUID
 from consolemenu import *
 from consolemenu.items import *
 
@@ -33,8 +33,15 @@ def pp_get_mnu_run_jobs() -> list[dict]:
             ]
 
 def pp_edit_job(name: str) -> None:
-    print(name + " edited.")
-    wait_key()
+    try:
+        new_name: str = "Job " + UUID()
+        update_item_title_from_menus(menus, name, new_name)
+        ...
+        print(f"{name} renamed as {new_name}.")
+    except Exception as e:
+        print(f"[ERROR] {str(e)}")
+    finally:
+        wait_key()
 
 def pp_del_job(name: str) -> None:
     print(name + " deleted.")

@@ -1,3 +1,4 @@
+import traceback
 import os
 from consolemenu import *
 from consolemenu.items import *
@@ -28,6 +29,36 @@ def wait_for_key_press(prompt: str = None) -> None:
         finally:
             # Restore the terminal settings
             termios.tcsetattr(fd, termios.TCSADRAIN, settings)
+
+def update_item_title_from_menus(menus: list[ConsoleMenu], old_title: str, new_title: str) -> None:
+    try:    
+        ignore_exception: bool = False
+        if menus:
+            for menu in menus:
+                for mnu_item in menu.items:
+                    if mnu_item.text.upper() == new_title.upper():
+                        ignore_exception = True
+                        raise Exception(f"An item named '{new_title}' already exists in the '{menu.title}' menu. Operation cancelled.")
+            for menu in menus:
+                for i, mnu_item in enumerate(menu.items):
+                    if mnu_item.text.upper() == old_title.upper():
+                        menu.items[i].text = new_title
+                        if isinstance(menu.items[i], FunctionItem):
+                            if menu.items[i].args:
+                                for argi, arg in enumerate(menu.items[i].args):
+                                    if arg.upper() == old_title.upper():
+                                        menu.items[i].args[argi] = new_title
+                            if menu.items[i].kwargs:
+                                for key, value in menu.items[i].kwargs.items():
+                                    if value.upper() == old_title.upper():
+                                        menu.items[i].kwargs[key] = new_title                                
+    except Exception as e:
+        if ignore_exception:
+            raise Exception(str(e))
+        else:
+            tb = traceback.extract_tb(e.__traceback__)
+            filename, line, fn, code = tb[-1]
+            raise Exception(f"[{filename}, {fn}, {line}] {str(e)}")
 
 def remove_item_from_menus(menus: list[ConsoleMenu], item: str) -> None:    
     if menus:
