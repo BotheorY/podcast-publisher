@@ -5,26 +5,102 @@ def main() -> None:
     menu: dict =    {
                         "title": "MAIN MENU",
                         "items":    [
-                                        {"title": "Run job",
+                                        {"title": "Run Job",
                                             "submenu":  {
-                                                            "title": "Run job",
+                                                            "title": "Run Job",
                                                             "subtitle": "Choose the job to run:",
                                                             "items": "core.pp_get_mnu_run_jobs"
                                                         }
                                         },
-                                        {"title": "Create job", "type": "func", "exec": "core.pp_create_job"},
-                                        {"title": "Edit job",
+                                        {"title": "Create Job", "type": "func", "exec": "core.pp_create_job"},
+                                        {"title": "Edit Job...",
                                             "submenu":  {
-                                                            "title": "Edit job",
+                                                            "title": "Edit Job",
                                                             "subtitle": "Choose the job to edit:",
                                                             "items": "core.pp_get_mnu_edit_jobs"
                                                         }
                                         },
-                                        {"title": "Delete job",
+                                        {"title": "View Job...",
                                             "submenu":  {
-                                                            "title": "Delete job",
+                                                            "title": "View Job",
+                                                            "subtitle": "Choose the job to view:",
+                                                            "items": "core.pp_get_mnu_view_jobs"
+                                                        }
+                                        },
+                                        {"title": "Delete Job...",
+                                            "submenu":  {
+                                                            "title": "Delete Job",
                                                             "subtitle": "Choose the job to delete:",
                                                             "items": "core.pp_get_mnu_delete_jobs"
+                                                        }
+                                        },
+                                        {"title": "Settings...",
+                                            "submenu":  {
+                                                            "title": "Settings",
+                                                            "items":    [
+                                                                                                                    {"title": "Set Cryptographic Key", "type": "func", "exec": "core.pp_set_crypto_key"},
+
+                                                                            {"title": "Set Sources...",
+                                                                                "submenu":  {
+                                                                                                "title": "Set Sources",
+                                                                                                "items":    [
+                                                                                                                {"title": "Add Source", "type": "func", "exec": "core.pp_add_source"},
+                                                                                                                {"title": "Edit Source...",
+                                                                                                                    "submenu":  {
+                                                                                                                                    "title": "Edit Source",
+                                                                                                                                    "subtitle": "Choose the source to edit:",
+                                                                                                                                    "items": "core.pp_get_mnu_edit_sources"
+                                                                                                                                }
+                                                                                                                },
+                                                                                                                {"title": "View Source...",
+                                                                                                                    "submenu":  {
+                                                                                                                                    "title": "View Source",
+                                                                                                                                    "subtitle": "Choose the source to view:",
+                                                                                                                                    "items": "core.pp_get_mnu_view_sources"
+                                                                                                                                }
+                                                                                                                },
+                                                                                                                {"title": "Delete Source...",
+                                                                                                                    "submenu":  {
+                                                                                                                                    "title": "Delete Source",
+                                                                                                                                    "subtitle": "Choose the source to delete:",
+                                                                                                                                    "items": "core.pp_get_mnu_delete_sources"
+                                                                                                                                }
+                                                                                                                }
+
+                                                                                                            ]
+                                                                                            }
+                                                                            },
+                                                                            {"title": "Set Targets...",
+                                                                                                                                                                                                "submenu":  {
+                                                                                                                                                                                                                "title": "Set Targets",
+                                                                                                                                                                                                                "items":    [
+                                                                                                                                                                                                                                {"title": "Add Target", "type": "func", "exec": "core.pp_add_target"},
+                                                                                                                                                                                                                                {"title": "Edit Target...",
+                                                                                                                                                                                                                                    "submenu":  {
+                                                                                                                                                                                                                                                    "title": "Edit Target",
+                                                                                                                                                                                                                                                    "subtitle": "Choose the target to edit:",
+                                                                                                                                                                                                                                                    "items": "core.pp_get_mnu_edit_targets"
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                },
+                                                                                                                                                                                                                                {"title": "View Target...",
+                                                                                                                                                                                                                                    "submenu":  {
+                                                                                                                                                                                                                                                    "title": "View Target",
+                                                                                                                                                                                                                                                    "subtitle": "Choose the target to view:",
+                                                                                                                                                                                                                                                    "items": "core.pp_get_mnu_view_targets"
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                },
+                                                                                                                                                                                                                                {"title": "Delete Target...",
+                                                                                                                                                                                                                                    "submenu":  {
+                                                                                                                                                                                                                                                    "title": "Delete Target",
+                                                                                                                                                                                                                                                    "subtitle": "Choose the target to delete:",
+                                                                                                                                                                                                                                                    "items": "core.pp_get_mnu_delete_targets"
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                }
+
+                                                                                                                                                                                                                            ]
+                                                                                                                                                                                                            }
+                                                                                                                                                        }                                                                            
+                                                                        ]
                                                         }
                                         }
                                     ]
