@@ -43,7 +43,8 @@ def get_func_ref(func_name: str):
 
 def run_menu(menu: ConsoleMenu) -> Optional[str]:
     try:
-        return menu.show()
+        if menu:
+            return menu.show()
     except Exception as e:
         tb = traceback.extract_tb(e.__traceback__)
         filename, line, fn, code = tb[-1]
