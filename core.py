@@ -1,4 +1,4 @@
-from utilities import wait_for_key_press as wait, add_item_to_menus, remove_item_from_menus, update_item_title_from_menus, get_UUID as UUID
+from utilities import wait_key, add_item_to_menus, remove_item_from_menus, update_item_title_from_menus, get_UUID as UUID
 from consolemenu import *
 from consolemenu.items import *
 
@@ -7,9 +7,6 @@ menus: list[ConsoleMenu] = []
 def mnu_add_to_list(menu: ConsoleMenu) -> None:
     if menu:
         menus.append(menu)
-
-def wait_key() -> None:
-    wait("\n>> Press a key to continue...")
 
 def pp_get_mnu_view_jobs() -> list[dict]:
     return  [
@@ -37,20 +34,6 @@ def pp_get_mnu_edit_jobs() -> list[dict]:
                 {"title": "Job A", "type": "func", "exec": "core.pp_edit_job", "args": ["Job A"]},
                 {"title": "Job B", "type": "func", "exec": "core.pp_edit_job", "args": ["Job B"]},
                 {"title": "Job C", "type": "func", "exec": "core.pp_edit_job", "args": ["Job C"]},
-            ]
-
-def pp_get_mnu_edit_sources() -> list[dict]:
-    return  [
-                {"title": "Source A", "type": "func", "exec": "core.pp_edit_source", "args": ["Source A"]},
-                {"title": "Source B", "type": "func", "exec": "core.pp_edit_source", "args": ["Source B"]},
-                {"title": "Source C", "type": "func", "exec": "core.pp_edit_source", "args": ["Source C"]},
-            ]
-
-def pp_get_mnu_edit_targets() -> list[dict]:
-    return  [
-                {"title": "Target A", "type": "func", "exec": "core.pp_edit_target", "args": ["Target A"]},
-                {"title": "Target B", "type": "func", "exec": "core.pp_edit_target", "args": ["Target B"]},
-                {"title": "Target C", "type": "func", "exec": "core.pp_edit_target", "args": ["Target C"]},
             ]
 
 def pp_get_mnu_delete_jobs() -> list[dict]:
@@ -91,14 +74,6 @@ def pp_edit_job(name: str) -> None:
         print(f"[ERROR] {str(e)}")
     finally:
         wait_key()
-
-def pp_edit_source(name: str) -> None:
-    print(name + " edited.")
-    wait_key()
-
-def pp_edit_target(name: str) -> None:
-    print(name + " edited.")
-    wait_key()
 
 def pp_del_job(name: str) -> None:
     print(name + " deleted.")

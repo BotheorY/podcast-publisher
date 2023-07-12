@@ -1,34 +1,7 @@
 import traceback
-import os
 from consolemenu import *
 from consolemenu.items import *
 import uuid
-
-if os.name == 'nt':  # Windows
-    import msvcrt
-elif os.name == 'posix':  # Unix, Linux, macOS
-    import sys
-    import termios
-    import tty
-else:
-    raise Exception("Operating system not supported")
-
-def wait_for_key_press(prompt: str = None) -> None:    
-    if prompt != None:
-        print(prompt)
-    if os.name == 'nt':  # Windows
-        msvcrt.getch()
-    elif os.name == 'posix':  # Unix, Linux, macOS
-        # Save current terminal settings
-        fd = sys.stdin.fileno()
-        settings = termios.tcgetattr(fd)
-        try:
-            # Put the terminal in raw mode to read the pressed keys
-            tty.setraw(sys.stdin.fileno())
-            sys.stdin.read(1)  # Waits for a key press
-        finally:
-            # Restore the terminal settings
-            termios.tcsetattr(fd, termios.TCSADRAIN, settings)
 
 def update_item_title_from_menus(menus: list[ConsoleMenu], old_title: str, new_title: str) -> None:
     try:    
@@ -125,3 +98,6 @@ def get_UUID(no_dashes: bool = True) -> str:
     if no_dashes:
         res = res.replace('-', '')
     return res
+
+def wait_key() -> None:
+    PromptUtils(Screen()).enter_to_continue()

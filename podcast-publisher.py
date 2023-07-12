@@ -45,13 +45,6 @@ def main() -> None:
                                                                                                 "title": "Set Sources",
                                                                                                 "items":    [
                                                                                                                 {"title": "Add Source", "type": "func", "exec": "core.pp_add_source"},
-                                                                                                                {"title": "Edit Source...",
-                                                                                                                    "submenu":  {
-                                                                                                                                    "title": "Edit Source",
-                                                                                                                                    "subtitle": "Choose the source to edit:",
-                                                                                                                                    "items": "core.pp_get_mnu_edit_sources"
-                                                                                                                                }
-                                                                                                                },
                                                                                                                 {"title": "View Source...",
                                                                                                                     "submenu":  {
                                                                                                                                     "title": "View Source",
@@ -75,13 +68,6 @@ def main() -> None:
                                                                                                                                                                                                                 "title": "Set Targets",
                                                                                                                                                                                                                 "items":    [
                                                                                                                                                                                                                                 {"title": "Add Target", "type": "func", "exec": "core.pp_add_target"},
-                                                                                                                                                                                                                                {"title": "Edit Target...",
-                                                                                                                                                                                                                                    "submenu":  {
-                                                                                                                                                                                                                                                    "title": "Edit Target",
-                                                                                                                                                                                                                                                    "subtitle": "Choose the target to edit:",
-                                                                                                                                                                                                                                                    "items": "core.pp_get_mnu_edit_targets"
-                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                },
                                                                                                                                                                                                                                 {"title": "View Target...",
                                                                                                                                                                                                                                     "submenu":  {
                                                                                                                                                                                                                                                     "title": "View Target",
